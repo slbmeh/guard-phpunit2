@@ -12,11 +12,11 @@ module Guard
 
         # The exittcode phpunit returns when the tests contain failures
         #
-        PHPUNIT_FAILURES_EXITCODE = 3
+        PHPUNIT_FAILURES_EXITCODE = 1
 
         # The exittcode phpunit returns when the tests contain errors
         #
-        PHPUNIT_ERRORS_EXITCODE   = 4
+        PHPUNIT_ERRORS_EXITCODE   = 2
 
         # Runs the PHPUnit tests and displays notifications
         # about the results.
@@ -70,10 +70,10 @@ module Guard
               output = execute_command phpunit_command(tests_folder, options)
             end
           end
-
+          
           # print the output to the terminal
           puts output
-
+          
           # return false in case the system call fails with no status!
           return false if $?.nil?
 
