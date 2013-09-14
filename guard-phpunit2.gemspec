@@ -4,7 +4,7 @@ require 'guard/phpunit2/version'
 
 Gem::Specification.new do |s|
   s.name        = "guard-phpunit2"
-  s.version     = Guard::PHPUnit2::VERSION
+  s.version     = Guard::PHPUnit2Version::VERSION
   s.authors     = ["Maher Sallam", "Ramon Soares"]
   s.email       = ["maher@sallam.me", "ramon@cc63.com"]
   s.homepage    = ""
