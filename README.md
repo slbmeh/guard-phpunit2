@@ -1,4 +1,4 @@
-Guard::PHPUnit [![Build Status](https://secure.travis-ci.org/v-r/guard-phpunit.png)](http://travis-ci.org/v-r/guard-phpunit) [![Dependency Status]
+Guard::PHPUnit [![Build Status](https://secure.travis-ci.org/v-r/guard-phpunit.png)](http://travis-ci.org/v-r/guard-phpunit)
 ==============
 
 Guard-phpunit2 allows you to automatically run [PHPUnit][6] tests when sources
