@@ -43,7 +43,7 @@ module Guard
           message = "#{results[:tests]} tests, #{results[:failures]} failures"
           message << "\n#{results[:errors]} errors"    if results[:errors]  > 0
           message << " (#{results[:pending]} pending)" if results[:pending] > 0
-          message << "\nin #{results[:duration]} seconds"
+          message << "\nin #{results[:duration].first} #{results[:duration].last}"
           message
         end
 

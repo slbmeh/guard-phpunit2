@@ -8,7 +8,7 @@ describe Guard::PHPUnit2::Formatter do
         subject.parse_output(output).should == {
           :tests  => 2, :failures => 0,
           :errors => 0, :pending  => 0,
-          :duration => 0
+          :duration => [0, "seconds"]
         }
       end
     end
@@ -19,7 +19,7 @@ describe Guard::PHPUnit2::Formatter do
         subject.parse_output(output).should == {
           :tests  => 2, :failures => 2,
           :errors => 0, :pending  => 0,
-          :duration => 0
+          :duration => [0, "seconds"]
         }
       end
     end
@@ -30,7 +30,7 @@ describe Guard::PHPUnit2::Formatter do
         subject.parse_output(output).should == {
           :tests  => 3, :failures => 0,
           :errors => 0, :pending  => 3,
-          :duration => 0
+          :duration => [0, "seconds"]
         }
       end
     end
@@ -41,7 +41,7 @@ describe Guard::PHPUnit2::Formatter do
         subject.parse_output(output).should == {
           :tests  => 13, :failures => 3,
           :errors => 1, :pending  => 3,
-          :duration => 2
+          :duration => [2, "seconds"]
         }
       end
     end

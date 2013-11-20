@@ -62,7 +62,7 @@ describe Guard::PHPUnit2::Runner do
           subject.stub(:notify_start)
           subject.stub(:execute_command).and_return(output)
 
-          ui.should_receive(:info).with(output)
+          #ui.should_receive(:info).with(output)
 
           subject.run( ['tests'] )
       end
