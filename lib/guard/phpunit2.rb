@@ -13,6 +13,8 @@ module Guard
     autoload :Notifier,  'guard/phpunit2/notifier'
     autoload :Runner,    'guard/phpunit2/runner'
 
+    VERSION = '0.2.5'
+
     DEFAULT_OPTIONS = {
       :all_on_start   => true,
       :all_after_pass => true,
