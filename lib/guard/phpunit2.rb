@@ -14,8 +14,6 @@ module Guard
     autoload :Notifier,  'guard/phpunit2/notifier'
     autoload :Runner,    'guard/phpunit2/runner'
 
-    VERSION = Guard::PHPUnit2Version::VERSION
-
     DEFAULT_OPTIONS = {
       :all_on_start   => true,
       :all_after_pass => true,
