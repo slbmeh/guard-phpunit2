@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
+$:.push File.expand_path(File.basename(__FILE__), "lib")
 require 'guard/phpunit2'
 
 Gem::Specification.new do |s|
