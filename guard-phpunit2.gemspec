@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path(File.basename(__FILE__), "lib")
-require 'guard/phpunit2'
+require 'guard/phpunit2/version'
 
 Gem::Specification.new do |s|
   s.name        = "guard-phpunit2"
-  s.version     = Guard::PHPUnit2::VERSION
+  s.version     = Guard::PHPUnit2Version::VERSION
   s.authors     = ["Maher Sallam", "Ramon Soares", "Marek Kalnik"]
   s.email       = ["maher@sallam.me", "ramon@cc63.com", "marekk@theodo.fr"]
   s.homepage    = ""
