@@ -1,5 +1,6 @@
 require 'guard'
 require 'guard/guard'
+require 'guard/phpunit2/version'
 
 module Guard
 
@@ -12,8 +13,6 @@ module Guard
     autoload :Formatter, 'guard/phpunit2/formatter'
     autoload :Notifier,  'guard/phpunit2/notifier'
     autoload :Runner,    'guard/phpunit2/runner'
-
-    VERSION = '0.2.5'
 
     DEFAULT_OPTIONS = {
       :all_on_start   => true,

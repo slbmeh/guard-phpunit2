@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require 'guard/phpunit2'
+$:.push File.expand_path('../lib', __FILE__)
+require 'guard/phpunit2/version'
 
 Gem::Specification.new do |s|
   s.name        = "guard-phpunit2"
-  s.version     = Guard::PHPUnit2::VERSION
+  s.version     = Guard::PHPUnit2Version::VERSION
   s.authors     = ["Maher Sallam", "Ramon Soares", "Marek Kalnik"]
   s.email       = ["maher@sallam.me", "ramon@cc63.com", "marekk@theodo.fr"]
   s.homepage    = ""
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = '>= 1.3.6'
   s.rubyforge_project = 'guard-phpunit2'
 
-  s.add_runtime_dependency 'guard', '~> 1.1'
+  s.add_runtime_dependency 'guard', ['>= 1.1', '< 3.0']
 
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rspec'
