@@ -25,7 +25,7 @@ module Guard
           skips    = 0
           duration = 0
 
-          tests = log.first['tests']
+          tests = log.first['tests'] unless log.empty?
           log.each do |event|
             passes   += 1 if passed_test?(event)
             failures += 1 if failed_test?(event)
