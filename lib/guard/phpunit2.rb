@@ -13,6 +13,8 @@ module Guard
     autoload :Formatter, 'guard/phpunit2/formatter'
     autoload :Notifier,  'guard/phpunit2/notifier'
     autoload :Runner,    'guard/phpunit2/runner'
+    autoload :LogReader, 'guard/phpunit2/logreader'
+    autoload :RealtimeRunner, 'guard/phpunit2/realtime_runner'
 
     DEFAULT_OPTIONS = {
       :all_on_start   => true,
@@ -20,7 +22,8 @@ module Guard
       :keep_failed    => true,
       :cli            => nil,
       :tests_path     => Dir.pwd,
-      :notification   => true
+      :notification   => true,
+      :realtime       => false
     }
 
     # Initialize Guard::PHPUnit.
@@ -57,7 +60,7 @@ module Guard
     # @raise (see #start)
     #
     def run_all
-      success = Runner.run(options[:tests_path], options.merge(
+      success = runner.run(options[:tests_path], options.merge(
         :message => 'Running all tests'
       ))
 
@@ -72,7 +75,7 @@ module Guard
     #
     def run_on_changes(paths)
       paths = Inspector.clean(paths + @failed_paths)
-      success = Runner.run(paths, options)
+      success = runner.run(paths, options)
 
       update_failed_paths(success, paths)
       run_all_after_pass(success)
@@ -80,6 +83,10 @@ module Guard
     end
 
     private
+
+    def runner
+      options[:realtime] ? RealtimeRunner : Runner
+    end
 
     # Adds or removes path to the failed_paths bassed
     # on the tests result.

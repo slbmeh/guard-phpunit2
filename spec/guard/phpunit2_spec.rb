@@ -27,6 +27,10 @@ describe Guard::PHPUnit2 do
       it 'sets a default :notification option' do
         subject.options[:notification].should be_true
       end
+
+      it 'sets a default :realtime option' do
+        subject.options[:realtime].should be_false
+      end
     end
 
     context 'when other options are provided' do
@@ -35,7 +39,8 @@ describe Guard::PHPUnit2 do
                                           :all_after_pass => false,
                                           :keep_failed    => false,
                                           :cli            => '--colors',
-                                          :tests_path     => 'tests'     }) }
+                                          :tests_path     => 'tests',
+                                          :realtime       => true}) }
 
       it 'sets :all_on_start with the provided option' do
         subject.options[:all_on_start].should be_false
@@ -55,6 +60,10 @@ describe Guard::PHPUnit2 do
 
       it 'sets :tests_path with the provided option' do
         subject.options[:tests_path].should == 'tests'
+      end
+
+      it 'sets :realtime with the provided option' do
+        subject.options[:realtime].should be_true
       end
     end
 
@@ -96,6 +105,25 @@ describe Guard::PHPUnit2 do
     it 'passes the options to the runner' do
       runner.should_receive(:run).with(anything, hash_including(defaults)).and_return(true)
       subject.run_all
+    end
+  end
+
+  describe 'realtime handling' do
+    describe 'realtime endabled' do
+      let(:guard) { Guard::PHPUnit2.new(nil, {:realtime => true }) }
+      it 'should call run on the realtimerunner' do
+        Guard::PHPUnit2::RealtimeRunner.should_receive(:run).and_return(true)
+        guard.run_on_changes ['tests/firstTest.php']
+      end
+    end
+
+    describe 'realtime disabled' do
+      let(:guard) { Guard::PHPUnit2.new(nil, {:realtime => false }) }
+
+      it 'should call run on the Runner class' do
+        Guard::PHPUnit2::Runner.should_receive(:run).and_return(true)
+        guard.run_on_changes ['tests/firstTest.php']
+      end
     end
   end
 

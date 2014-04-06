@@ -7,8 +7,11 @@ module Guard
     # The Guard::PHPUnit runner handles running the tests, displaying
     # their output and notifying the user about the results.
     #
-    module Runner
-      class << self
+    class Runner
+
+      def self.run(paths, options)
+        self.new.run(paths, options)
+      end
 
         # The exittcode phpunit returns when the tests contain failures
         #
@@ -38,7 +41,7 @@ module Guard
           run_tests(paths, options)
         end
 
-        private
+        protected
 
         # Checks that phpunit is installed on the user's
         # machine.
@@ -67,15 +70,13 @@ module Guard
 
           if paths.length == 1
             tests_path = paths.first
-            output = execute_command phpunit_command(tests_path, options)
+            output = execute_phpunit(tests_path, options)
           else
             create_tests_folder_for(paths) do |tests_folder|
-              output = execute_command phpunit_command(tests_folder, options)
+              output = execute_phpunit(tests_folder, options)
             end
           end
           
-          # print the output to the terminal
-          puts output
           
           # return false in case the system call fails with no status!
           return false if $?.nil?
@@ -108,8 +109,13 @@ module Guard
         # @param (see #run)
         #
         def notify_results(output, options)
-          results = Formatter.parse_output(output)
+          results = parse_output(output)
           Notifier.notify_results(results)
+        end
+
+        # Parses the output into the hash Guard expects
+        def parse_output(output)
+          Formatter.parse_output(output)
         end
 
         # Displays a notification about failing to run the tests
@@ -184,8 +190,13 @@ module Guard
           cmd_parts << command
           cmd_parts << "--include-path #{formatter_path}"
           cmd_parts << "--printer PHPUnit_Extensions_Progress_ResultPrinter"
+
+          # Allow callers to inject some parts if needed
+          yield cmd_parts if block_given?
+
           cmd_parts << options[:cli] if options[:cli]
           cmd_parts << path
+
 
           cmd_parts.join(' ')
         end
@@ -198,7 +209,13 @@ module Guard
         def execute_command(command)
           %x{#{command}}
         end
-      end
+
+        def execute_phpunit(tests_folder, options)
+          output = execute_command phpunit_command(tests_folder, options)
+          puts output
+
+          output
+        end
     end
   end
 end
