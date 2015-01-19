@@ -35,12 +35,12 @@ describe Guard::PHPUnit2 do
 
     context 'when other options are provided' do
 
-      subject { Guard::PHPUnit2.new(nil, { :all_on_start   => false,
-                                          :all_after_pass => false,
-                                          :keep_failed    => false,
-                                          :cli            => '--colors',
-                                          :tests_path     => 'tests',
-                                          :realtime       => true}) }
+      subject { Guard::PHPUnit2.new({ :all_on_start   => false,
+				      :all_after_pass => false,
+				      :keep_failed    => false,
+				      :cli            => '--colors',
+				      :tests_path     => 'tests',
+				      :realtime       => true}) }
 
       it 'sets :all_on_start with the provided option' do
         subject.options[:all_on_start].should be false
@@ -82,7 +82,7 @@ describe Guard::PHPUnit2 do
     end
 
     context 'with the :all_on_start option set to false' do
-      subject { Guard::PHPUnit2.new(nil, :all_on_start => false) }
+      subject { Guard::PHPUnit2.new(:all_on_start => false) }
 
       it 'calls #run_all' do
         subject.should_not_receive(:run_all)
@@ -110,7 +110,7 @@ describe Guard::PHPUnit2 do
 
   describe 'realtime handling' do
     describe 'realtime endabled' do
-      let(:guard) { Guard::PHPUnit2.new(nil, {:realtime => true }) }
+      let(:guard) { Guard::PHPUnit2.new({:realtime => true }) }
       it 'should call run on the realtimerunner' do
         Guard::PHPUnit2::RealtimeRunner.should_receive(:run).and_return(true)
         guard.run_on_changes ['tests/firstTest.php']
@@ -118,7 +118,7 @@ describe Guard::PHPUnit2 do
     end
 
     describe 'realtime disabled' do
-      let(:guard) { Guard::PHPUnit2.new(nil, {:realtime => false }) }
+      let(:guard) { Guard::PHPUnit2.new({:realtime => false }) }
 
       it 'should call run on the Runner class' do
         Guard::PHPUnit2::Runner.should_receive(:run).and_return(true)
@@ -171,7 +171,7 @@ describe Guard::PHPUnit2 do
       end
 
       context 'with the :keep_failed option set to false' do
-        subject { Guard::PHPUnit2.new(nil, :keep_failed => false) }
+	subject { Guard::PHPUnit2.new(:keep_failed => false) }
 
         it 'runs the next changed files normally without the failed tests' do
           expect { subject.run_on_changes ['tests/firstTest.php'] }.to throw_symbol :task_has_failed
@@ -204,7 +204,7 @@ describe Guard::PHPUnit2 do
       end
 
       context 'with the :all_after_pass option set to false' do
-        subject { Guard::PHPUnit2.new(nil, :all_after_pass => false) }
+	subject { Guard::PHPUnit2.new(:all_after_pass => false) }
 
         it 'does not call #run_all' do
           subject.should_not_receive(:run_all)
