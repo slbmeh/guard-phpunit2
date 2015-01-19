@@ -1,4 +1,6 @@
 require 'rspec'
+require 'guard/notifier'
+require 'guard/compat/test/helper'
 require 'guard/phpunit2'
 
 RSpec.configure do |config|

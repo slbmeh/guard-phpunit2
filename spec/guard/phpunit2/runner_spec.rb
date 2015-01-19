@@ -4,7 +4,7 @@ describe Guard::PHPUnit2::Runner do
 
   let(:formatter) { Guard::PHPUnit2::Formatter }
   let(:notifier)  { Guard::PHPUnit2::Notifier  }
-  let(:ui)        { Guard::UI                 }
+  let(:ui)        { Guard::Compat::UI          }
 
   describe '#run' do
     before do

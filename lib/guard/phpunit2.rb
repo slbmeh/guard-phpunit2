@@ -1,5 +1,4 @@
-require 'guard'
-require 'guard/guard'
+require 'guard/compat/plugin'
 require 'guard/phpunit2/version'
 
 module Guard
