@@ -2,6 +2,12 @@ language: ruby
 rvm:
   - 1.9.3
   - 2.0.0
+  - 2.1.2
+  - jruby
+matrix:
+  allow_failures:
+    - rvm: jruby
+before_script: 'bundle list'
 notifications:
   email:
     - ramon@codecraft63.com
