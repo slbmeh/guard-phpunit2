@@ -4,6 +4,9 @@ rvm:
   - 2.0.0
   - 2.1.2
   - jruby
+env:
+  global:
+    - "JRUBY_OPTS=-Xcext.enabled=true"
 matrix:
   allow_failures:
     - rvm: jruby
