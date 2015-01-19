@@ -1,5 +1,5 @@
 require 'guard'
-require 'guard/guard'
+require 'guard/plugin'
 require 'guard/phpunit2/version'
 
 module Guard
@@ -7,7 +7,7 @@ module Guard
   # The PHPUnit guard gets notified about system
   # events.
   #
-  class PHPUnit2 < Guard
+  class PHPUnit2 < Plugin
 
     autoload :Inspector, 'guard/phpunit2/inspector'
     autoload :Formatter, 'guard/phpunit2/formatter'
