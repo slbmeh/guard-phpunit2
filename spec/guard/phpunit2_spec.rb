@@ -9,15 +9,15 @@ describe Guard::PHPUnit2 do
   describe '#initialize' do
     context 'when no options are provided' do
       it 'sets a default :all_on_start option' do
-        subject.options[:all_on_start].should be_true
+        subject.options[:all_on_start].should be true
       end
 
       it 'sets a default :all_after_pass option' do
-        subject.options[:all_after_pass].should be_true
+        subject.options[:all_after_pass].should be true
       end
 
       it 'sets a default :keep_failed option' do
-        subject.options[:keep_failed].should be_true
+        subject.options[:keep_failed].should be true
       end
 
       it 'sets a default :tests_path option' do
@@ -25,11 +25,11 @@ describe Guard::PHPUnit2 do
       end
 
       it 'sets a default :notification option' do
-        subject.options[:notification].should be_true
+        subject.options[:notification].should be true
       end
 
       it 'sets a default :realtime option' do
-        subject.options[:realtime].should be_false
+        subject.options[:realtime].should be false
       end
     end
 
@@ -43,15 +43,15 @@ describe Guard::PHPUnit2 do
                                           :realtime       => true}) }
 
       it 'sets :all_on_start with the provided option' do
-        subject.options[:all_on_start].should be_false
+        subject.options[:all_on_start].should be false
       end
 
       it 'sets :all_after_pass with the provided option' do
-        subject.options[:all_after_pass].should be_false
+        subject.options[:all_after_pass].should be false
       end
 
       it 'sets :keep_failed with the provided option' do
-        subject.options[:keep_failed].should be_false
+        subject.options[:keep_failed].should be false
       end
 
       it 'sets :cli with the provided option' do
@@ -63,7 +63,7 @@ describe Guard::PHPUnit2 do
       end
 
       it 'sets :realtime with the provided option' do
-        subject.options[:realtime].should be_true
+        subject.options[:realtime].should be true
       end
     end
 
@@ -129,7 +129,7 @@ describe Guard::PHPUnit2 do
 
   describe '#run_on_changes' do
     before do
-      inspector.stub(:clean).and_return { |paths| paths }
+      inspector.stub(:clean) { |paths| paths }
     end
 
     it 'cleans the changed paths before running the tests' do
